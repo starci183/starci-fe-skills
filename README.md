@@ -36,14 +36,17 @@ A [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin: **7 skills*
 
 ```
 starci-fe-skills/
-├── skills/             # 7 invokable Claude Code skills
-│   ├── fe/                     →  /fe          main FE conventions + golden rules (the SSOT entry point)
-│   ├── ux-brainstorm/          →  /ux-brainstorm  re-imagine a page's UX from real backend data (Opus, no code)
-│   ├── ux-apply/               →  /ux-apply    implement the redesigned information architecture
-│   ├── ui-apply/               →  /ui-apply    the "skin" pass — tokens, spacing, radius, look
-│   ├── starci-async/           →  loading / error / empty / content via AsyncContent
-│   ├── merge/                  →  /merge       fold pending rule drafts into the stable SSOT
-│   └── skill-code-example-fe/  →  patterns for lesson FE repos (Vite + React 19)
+├── skills/             # invokable Claude Code skills (6 starci-fe-* + shared)
+│   ├── fe/                        →  /fe          main FE conventions + golden rules (the SSOT entry point)
+│   ├── starci-fe-ux-brainstorm/  →  propose 1–3 layouts + widget mockups from house memory + web (Opus, no code)
+│   ├── starci-fe-ux-apply/       →  build the chosen layout + record the decisions (the loop learns here)
+│   ├── starci-fe-layout-apply/   →  fix layout & spacing to the house rhythm (gap/padding/margin = 0·2·3·4·6)
+│   ├── starci-fe-skeleton-apply/ →  add / fix loading skeletons (mirror the real layout, AsyncContent gate)
+│   ├── starci-fe-cannon-audit/   →  audit FE code against the canon
+│   ├── starci-fe-cannon-apply/   →  apply / fix code to the canon
+│   ├── starci-async/             →  loading / error / empty / content via AsyncContent
+│   ├── merge/                    →  /merge       fold pending rule drafts into the stable SSOT
+│   └── skill-code-example-fe/    →  patterns for lesson FE repos (Vite + React 19)
 │
 ├── rules/              # The strict, enforceable SSOT
 │   ├── main.md                 →  16-section law: architecture · style · tokens · a11y · smells
