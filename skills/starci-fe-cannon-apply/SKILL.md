@@ -6,7 +6,7 @@ description: >-
   feature, hook, SWR query/mutation, Redux slice, Zustand store, form, modal/drawer,
   page, type, or palette — or when the user says "viết code FE mới", "tạo component
   mới", "new feature", "scaffold", "build this page/component", "add a hook/slice/form",
-  or "apply the patterns". Follows the shared canon at ../../cannon/CODE-CANNON.md
+  or "apply the patterns". Follows the shared canon at ../../cannon/CONTENT.md
   so new code is born on-pattern. NOT for auditing legacy code — use
   starci-fe-cannon-audit for that.
 ---
@@ -17,7 +17,7 @@ You are writing **new** StarCi Academy frontend code. Make it born on-canon — 
 exactly so it needs no later audit fix.
 
 ## Step 0 — Load the canon
-ALWAYS open **`../../cannon/CODE-CANNON.md`** first (absolute: `cannon/CODE-CANNON.md` at repo
+ALWAYS open **`../../cannon/CONTENT.md`** first (absolute: `cannon/CONTENT.md` at repo
 root). Internalize the 4-tier model (§0) and the per-slice RULEs. When unsure, find the cited EXAMPLE
 file in the repo and mirror it.
 

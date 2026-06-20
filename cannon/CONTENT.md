@@ -8,8 +8,8 @@
 > **DO / DON'T**, and the **VIOLATION** an audit should flag. The two companion skills
 > (`starci-fe-cannon-audit`, `starci-fe-cannon-apply`) reference this file and must stay in sync with it.
 >
-> Repo layout for skills: this canon lives at `cannon/CODE-CANNON.md`; skills live at
-> `skills/<name>/SKILL.md` and reference it as `../../cannon/CODE-CANNON.md`.
+> Repo layout for skills: this canon lives at `cannon/CONTENT.md`; skills live at
+> `skills/<name>/SKILL.md` and reference it as `../../cannon/CONTENT.md`.
 
 ---
 

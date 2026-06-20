@@ -6,7 +6,7 @@ description: >-
   code cũ", "review legacy FE", "check pattern compliance", "pattern audit", "find
   deviations", "is this on-canon", "rà soát code FE", or asks whether existing
   components/hooks/slices/forms/styling follow the house patterns. Reads the shared
-  canon at ../../cannon/CODE-CANNON.md and checks files slice-by-slice (structure,
+  canon at ../../cannon/CONTENT.md and checks files slice-by-slice (structure,
   components, data fetching, state, forms, types, styling, routing), then reports
   findings ranked by severity. NOT for writing new code — use starci-fe-cannon-apply
   for that.
@@ -18,8 +18,8 @@ You are auditing **existing** StarCi Academy frontend code (`C:\Repositories\sta
 or `D:\Repositories\starci-academy`) against the house canon.
 
 ## Step 0 — Load the canon
-ALWAYS open **`../../cannon/CODE-CANNON.md`** first (relative to this skill file; absolute
-`cannon/CODE-CANNON.md` at repo root). It is the source of truth for every RULE, the per-rule
+ALWAYS open **`../../cannon/CONTENT.md`** first (relative to this skill file; absolute
+`cannon/CONTENT.md` at repo root). It is the source of truth for every RULE, the per-rule
 VIOLATION definitions, and **Appendix A — the master inconsistency ledger** (your pre-seeded hit-list
 of known drifts with exact file paths). Do not rely on memory; cite the canon's rule IDs (e.g.
 "SLICE 3.7 AsyncContent", "SLICE 2.1 block-purity").
