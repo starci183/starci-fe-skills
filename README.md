@@ -79,7 +79,7 @@ If you need `!important` to override your own code, a decision is in the wrong l
 /reload-plugins
 ```
 
-The plugin bundles `refs/` + `cannon/CONTENT.md`, so the skills' relative reads still resolve after install.
+The plugin bundles `journals/` + `cannon/`, so the skills' relative reads still resolve after install.
 Skills surface namespaced as `/starci-fe-skills:<skill>`:
 
 ```
