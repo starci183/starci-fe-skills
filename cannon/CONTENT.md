@@ -346,9 +346,11 @@ zodResolver** in a Zustand form. zodResolver is RHF-only.
 Modal.Header + Modal.Body`. Mounted in `ModalContainer.tsx`, never inline.
 **Drawer:** `Drawer > Drawer.Backdrop isOpen onOpenChange > Drawer.Content placement={isMobile ?
 "bottom" : "right"} > Drawer.Dialog className="p-0" > (p-3 wrapper with CloseTrigger + Header) >
-border-b divider > Drawer.Body`. Placement always responsive via `useSmViewpoint()`. Mounted in
-`DrawerContainer.tsx`.
-- **VIOLATION:** `Drawer.Dialog className="p-3"` (clips the border-b divider); modal mounted in a page.
+Drawer.Body`. Placement always responsive via `useSmViewpoint()`. Mounted in `DrawerContainer.tsx`.
+- **NO header divider — UNIFIED Modal + Drawer (2026-06-21):** the header ↔ body are separated by
+  whitespace (header-wrapper padding + body padding), **never a `border-b` line**. Both overlays follow this.
+  See `decision/overlay.md`.
+- **VIOLATION:** a `border-b` divider between an overlay header and body (removed from all 6 drawers); modal mounted in a page.
 
 ### 5.9 Field error display
 **RULE (canonical):** inside `<TextField isInvalid={…}>`, use HeroUI `<FieldError>`.

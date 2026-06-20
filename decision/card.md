@@ -24,7 +24,16 @@ Course/pricing/media/continue cards — the dominant content unit.
 - **"Current plan" indicator = full-width banner, NOT a small chip:** `flex w-full justify-center … bg-accent/10` (or `bg-success/10`) + `text-success` medium; banner radius matches the parent card radius (e.g. `rounded-3xl`). Every plan in a comparison (incl. free/0đ) must state real specs (credit/limit).
 
 ## Decisions (newest first)
-_(empty — each entry: **scenario** · **chose what** · **WHY** · which page · date)_
+- **Persistent action panel in a split workspace** · chose a single **`Card` + `CardContent` (gap-6)**
+  wrapping Label "Github dự án" → submission fields → actions → result (`TaskSubmissionPanel`), NOT
+  `LabeledCard` · **WHY:** this is the sticky RIGHT side of a read-left/act-right split — it must read as one
+  self-contained bordered "panel" the eye returns to, so the label sits INSIDE the card frame (a panel
+  header), whereas `LabeledCard` puts the label OUTSIDE/above and is for in-flow page sections. A bordered
+  card also visually detaches the action surface from the left reading column. · personal-project task page ·
+  2026-06-20
 
 ## Gotchas
-_(empty)_
+- **A pressable card is NOT for a navigate-to-detail index.** A list whose only job is "tap → go deeper"
+  (e.g. the Foundations topic index) should be a **link + caret list row** (`ListRow` in a joined
+  `SectionCard`), not a grid of big `PressableCard`s. Reserve heavy pressable cards for marketing / hero /
+  pick-one-of-few surfaces where the artwork itself carries value. See [[list]] (2026-06-21 Foundations).

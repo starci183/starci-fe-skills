@@ -39,6 +39,25 @@ do well; note what NOT to copy. (Apply will append the durable takeaway to `desi
 Route (`app/[locale]/…/page.tsx`) + the feature/blocks rendering it + the data it shows (GraphQL op in
 `modules/api`/`hooks/swr` + Postgres entity — fields the BE exposes but the UI ignores = opportunity).
 
+## 3b. Read the BACKEND deeply — understand thầy's business (MANDATORY, cache it)
+The FE is only the surface; the real **business rules live in the backend** (`D:/Repositories/starci-academy-backend`).
+You CANNOT design the right UX without knowing what the domain actually does — what persists, what's
+gated, what's per-user vs per-course vs per-milestone, what a "submission/attempt/credit/unlock" really
+means. **Always trace the page's data to its backend source before brainstorming:**
+- **GraphQL resolver** for each op the page calls (`apps|src/**/<domain>.resolver.ts`) → the **service**
+  it delegates to (`*.service.ts` / CQRS handlers) → the **entity/migrations** (TypeORM `*.entity.ts`,
+  columns, relations, defaults) → any **enum/state machine** (statuses, lock/unlock, scoring, phases).
+- Answer the biz questions the layout depends on, e.g.: *what is the scope of this record* (per-task vs
+  per-milestone vs per-project vs per-user)? *what persists across navigation*? *what unlocks the next
+  step*? *what does the score/credit/quota mean*? *which fields are write-once / server-derived*?
+  A wrong assumption here (e.g. "submission is per-task" when it's **per-project, persisted across every
+  milestone**) produces a structurally wrong layout.
+- **Cache the findings** so the next loop starts smart: append a distilled **"Backend business" note** for
+  the page to its `design/<page>.md` (scope, persistence, gating, scoring, key fields + the resolver→
+  service→entity path you traced). On later runs, **read that cache first**; only re-read BE source when
+  the cache looks stale or the page touches a new domain. Treat the BE source as the source of truth, the
+  cache as the fast path — never brainstorm from FE shapes alone.
+
 ## 4. Brainstorm 1–3 layouts
 Each direction: anchored to a **recorded decision** (`decision/<block>.md`) + a **fetched ref** + an archetype.
 - **components** — reuse StarCi blocks; propose a NEW block if needed (name its API + tier, per cannon).

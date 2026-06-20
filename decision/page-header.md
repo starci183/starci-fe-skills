@@ -34,4 +34,8 @@ Distilled from `03-layout-archetypes.md` (the three standard page frames) + the 
 _(empty — each entry: **scenario** · **chose what** · **WHY** · which page · date)_
 
 ## Gotchas
-_(empty)_
+- **Cap content width — don't let a page stretch edge-to-edge on wide monitors.** A content/index page wraps
+  its whole column (breadcrumb + header + body) in **`mx-auto max-w-3xl`** (one shared cap, applied on the page
+  wrapper, NOT per-section) so the three tiers align on the same reading column. `max-w-3xl` for single-column
+  reading/lists (matches the lesson reader); go wider only for a genuine multi-column grid. Thầy: "nhớ max-w cho
+  nội dung bên trong." See [[list]] (Foundations, 2026-06-21).

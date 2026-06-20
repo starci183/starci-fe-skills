@@ -26,7 +26,24 @@ FAB / rating / input-like buttons.
 - **Anti-patterns (forbidden):** multiple primaries · danger next to primary · icon-only without `aria-label` · color via className · `<button>` from scratch (use HeroUI `Button`) · **a row of pill `Button`s as a SELECTOR** (use `Select`/`Tabs primary`) · `fullWidth` save in a wide settings form.
 
 ## Decisions (newest first)
-_(empty — each entry: **scenario** · **chose what** · **WHY** · which page · date)_
+
+### 2026-06-21 — Content-AI FAB (lesson reader)
+- **Scenario:** the "ask StarCi AI" mascot FAB on a lesson content page. Was a fixed bottom-right button
+  opening a right-side `Drawer` — it sat over the reading column and the drawer covered the lesson.
+- **Chose (direction C):** a right-edge FAB the user **drags VERTICALLY only** (pinned to the edge, can't
+  block the middle of the content), position persisted in `localStorage`. **Click → anchored `Popover`**
+  (HeroUI, `placement="left bottom"`, `w-[380px]`) hosting `ContentAiChat` beside the bubble, so you read +
+  chat side by side. **Mobile keeps the bottom-sheet `Drawer`** (a popover is too cramped on a phone).
+- **WHY:** thầy chốt C — luôn gọn, không che giữa nội dung; popover nhẹ cho đọc-song-song. Ref: Intercom/Crisp
+  messenger popover + edge-docked launcher.
+- **Files:** `src/components/features/learn/ContentAiFab/index.tsx` (drag + popover, desktop / FAB+drawer,
+  mobile via `useSmViewpoint`), `src/components/drawers/ContentAiChatDrawer/index.tsx` (now mobile-only).
+- **Gotchas hit:** (1) FAB must be a HeroUI `Popover` trigger → used `<Button variant="primary">` (accent via
+  variant, NOT className — stays on-canon) instead of the `FloatingActionButton` block. (2) Drag-vs-click:
+  `DRAG_THRESHOLD` 6px + a `draggingRef` guard in `onOpenChange` swallows the toggle that fires at drag-release.
+  (3) Drawer gated to `isMobile` so desktop popover + mobile drawer never both open on the shared overlay key.
 
 ## Gotchas
-_(empty)_
+- Draggable FAB + HeroUI `Popover`: the press that ends a drag will try to toggle the popover — guard it
+  (`if (draggingRef.current) return` in `onOpenChange`). Pointer drag handlers go on the HeroUI `Button`
+  (verify it forwards `onPointerDown/Move/Up`); use `touch-none` so mobile drag doesn't scroll the page.

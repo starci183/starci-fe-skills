@@ -22,6 +22,7 @@ feedback. Reading these before a new design means the AI **reuses the house's lo
 | `avatar.md` | identity — avatars/user cells/uploads |
 | `banner.md` | marketing — heroes/pitch/manifesto |
 | `media.md` | media — cover images |
+| `overlay.md` | modal · drawer · popover shells |
 
 **How it grows:** at the END of `/starci-fe-ux-apply`, the decision for each block touched (scenario →
 choice → why) is appended to the matching `<block>.md`. **Automatic, no command.** A new block in the system?

@@ -56,6 +56,12 @@ Font is **Open Sans** (`next/font`). ⚠️ Known drift: `globals.css` sets `--f
 Weights: title `bold`, heading/card `semibold`, sub-label/price `medium`. No thin/light/extrabold. Prefer HeroUI `Typography` (`type` ∈ `body|body-sm|body-xs|code|h1..h6`, `color` only `default|muted`) over `<div>`+text classes; `PageHeader` title = `Heading level={3} weight="bold"`.
 
 ## Form & tooltip visual conventions
+- **Input variant by SURFACE (2026-06-21):** the `TextField` `variant` is chosen by what the input sits ON,
+  not by emphasis. **On the page background → `variant="primary"`.** **On a raised surface — card, modal,
+  drawer, popover → `variant="secondary"`** (the lighter field reads correctly against the surface; primary's
+  accent border fights it). E.g. the content-AI chat composer lives in a popover/drawer → `variant="secondary"`;
+  `SearchBar` on a panel is already secondary. The send/submit `Button` keeps its own emphasis (`primary`) —
+  this rule is the FIELD only.
 - **Forms:** `TextField` children must be valid slots — descriptions/counters/hints use `slot="description"` (never a bare `<Typography>`/`<div>`, React Aria throws). Checkbox = HeroUI `Checkbox` compound. Small 1-of-few selectors = `Select` dropdown (`w-fit min-w-48`) or `Tabs variant="primary"` — NEVER a row of pill buttons. Single-cluster form sections stay flat (no extra `Card`). Save button = `self-start` (hugs text), not `fullWidth`. Avatar upload = block `ImageDropzone` in a modal via a zustand overlay store.
 - **Secrets** (API key/token): encrypted at rest in BE, plaintext never returned; input write-only (`type="password"`, no prefill); stored value shown masked `••••{last4}` with "Replace"/"Remove" — no "reveal" button.
 - **Tooltips:** any hard term (rank, tier, KPI, streak, league, p99…) → block `InfoTooltip` (never raw HeroUI `Tooltip` in a feature). Plain-language, 1–3 sentences, **personalized when data allows** ("why YOU are at this level" + "what's needed to level up"); text via i18n. `Tooltip.Content` already pads — no extra `p-*` wrapper.
