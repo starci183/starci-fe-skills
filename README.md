@@ -85,6 +85,8 @@ Skills surface namespaced as `/starci-fe-skills:<skill>`:
 ```
 /starci-fe-ux-brainstorm   brainstorm 1–3 layouts for a page (+ widget mockups)
 /starci-fe-ux-apply        build the chosen layout on-canon + update the journal (auto, end of task)
+/starci-fe-layout-apply    fix a page's layout & spacing to the house rhythm (gap 0·2·3·4·6, 3-tier, caps)
+/starci-fe-skeleton-apply  add/fix loading skeletons that mirror the real layout (AsyncContent + gate)
 /starci-fe-cannon-audit    audit existing FE against the code canon
 /starci-fe-cannon-apply    write new FE code on-canon
 ```
