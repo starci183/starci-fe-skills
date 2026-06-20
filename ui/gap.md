@@ -29,6 +29,15 @@ The gap grows with **how different the two things are**:
 > `gap-8` is NOT a vertical content gap — vertical content uses `3` (related) or `6` (different sections).
 > `8` is reserved for **whole layout regions** (e.g. the two profile/dashboard columns).
 
+### Don't double the gap with padding (2026-06-21)
+When two layout regions are separated by `gap-8`, **zero the padding on the edge each region presents to the
+gap** so the gap isn't doubled by region padding:
+- the **LEFT** region drops its right padding → **`pr-0`**;
+- the **RIGHT** region drops its left padding → **`pl-0`**.
+
+Real example (lesson reader): content column = `p-6 pr-0 pb-0`, the "On this page" rail = `p-6 pl-0`, with
+**`gap-8`** between them. So the only space between content and rail is the `gap-8` — clean, not gap + padding.
+
 ## DO
 - title + description → `gap-0`
 - label + input → `gap-2`
