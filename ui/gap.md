@@ -17,6 +17,13 @@ Grounded from a full scan of `src/**.tsx` (2026-06-21):
 > **The one question that decides it:** *"Are these two the SAME function or DIFFERENT?"*
 > Same group → **`gap-3`**. Different blocks → **`gap-6`**. (`space-y-*`/`space-x-*` use the exact same scale.)
 
+## Section gap — `gap-6` vs `gap-8` (by page archetype)
+- **Default (content pages — e.g. the lesson/content reader):** section ↔ section = **`gap-6`**.
+- **Two-column "dashboard-style" pages — profile & dashboard:** the gap between the two sides / big sections is
+  **`gap-8`** (these pages breathe wider). (2026-06-21 decision.)
+
+So `gap-8` is no longer just an "exception" — it's the **section gap on profile/dashboard**. Other pages keep `gap-6`.
+
 ## DO
 - title + description → `gap-0`
 - label + input → `gap-2`
