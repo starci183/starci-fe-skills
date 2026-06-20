@@ -33,6 +33,15 @@ column is built as **stacked PARTS**, and:
 home/profile + dashboard use the **2-column shell** (identity/sections left+right) with **`gap-8`** between the
 two sides — NOT a 3-rail layout.
 
+**Shared shell padding = gate it to the layout mode (2026-06-21).** A shell that serves several page modes
+(e.g. `LearnShell` → lesson-reader / personal-project / foundations) must apply mode-specific padding
+**conditionally on that mode**, never on the shared content slot for all modes. The lesson-reader's region rule
+(`p-6 pr-0 pb-0` for its gap-8 4-column layout) leaked to every learn tab: sibling pages bring their OWN page
+padding (`p-3`), so the unconditional shell `p-6` **stacked** into `p-6 + p-3` = a doubled top gap, and the
+`pr-0`/`pb-0` jammed their content against the edge/border. Fix: `cn("flex-1", isLessonReader && "p-6 lg:pr-0
+lg:pb-0", …)`. **Rule: padding that exists for ONE layout mode is conditional on that mode** (see also
+`../ui/padding.md` "don't stack padding").
+
 ## Per-page decisions
 `<page>.md` (e.g. `lesson-reader.md`, `dashboard.md`) — the archetype chosen, the section order, the flow,
 and **why**. Added/updated automatically at the end of `/starci-fe-ux-apply`.
