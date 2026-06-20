@@ -1,4 +1,4 @@
-# Mindset — tabs
+# Decision — tabs
 
 When & WHY we choose/shape the **tabs** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a tabs, we reuse the house's logic instead of guessing.

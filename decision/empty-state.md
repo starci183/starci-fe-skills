@@ -1,4 +1,4 @@
-# Mindset — empty-state
+# Decision — empty-state
 
 When & WHY we choose/shape the **empty-state** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a empty-state, we reuse the house's logic instead of guessing.

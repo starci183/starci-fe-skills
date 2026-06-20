@@ -1,4 +1,4 @@
-# Mindset — sidebar
+# Decision — sidebar
 
 When & WHY we choose/shape the **sidebar** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a sidebar, we reuse the house's logic instead of guessing.

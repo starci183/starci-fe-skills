@@ -1,4 +1,4 @@
-# Mindset — page-header
+# Decision — page-header
 
 When & WHY we choose/shape the **page-header** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a page-header, we reuse the house's logic instead of guessing.

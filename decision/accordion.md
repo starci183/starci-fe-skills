@@ -1,4 +1,4 @@
-# Mindset — accordion
+# Decision — accordion
 
 When & WHY we choose/shape the **accordion** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a accordion, we reuse the house's logic instead of guessing.

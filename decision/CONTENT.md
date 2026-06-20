@@ -1,4 +1,4 @@
-# journals/mindset/ — decision logs: WHY a scenario chose a component
+# decision/ — decision logs: WHY a scenario chose a component
 
 This is the house's **design decision memory**. One file per block family (`<block>.md`). Each holds the
 records of *"for scenario X we chose component Y, shaped like this, because Z"* — learned from the teacher's
@@ -27,5 +27,5 @@ feedback. Reading these before a new design means the AI **reuses the house's lo
 choice → why) is appended to the matching `<block>.md`. **Automatic, no command.** A new block in the system?
 add a `<block>.md`.
 
-> `journals/ux/` is the sibling: page-level UX/layout decisions + UX patterns fetched from the web.
+> `design/` (page UX) + `ui/` (visual system) are the siblings: page-level UX/layout decisions + UX patterns fetched from the web.
 > `../../cannon/CONTENT.md` is the code-rule layer (separate concern).

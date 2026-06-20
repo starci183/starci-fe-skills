@@ -1,4 +1,4 @@
-# Mindset — card
+# Decision — card
 
 When & WHY we choose/shape the **card** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a card, we reuse the house's logic instead of guessing.

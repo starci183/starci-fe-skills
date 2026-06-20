@@ -1,4 +1,4 @@
-# Mindset — banner
+# Decision — banner
 
 When & WHY we choose/shape the **banner** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a banner, we reuse the house's logic instead of guessing.

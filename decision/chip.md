@@ -1,4 +1,4 @@
-# Mindset — chip
+# Decision — chip
 
 When & WHY we choose/shape the **chip** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a chip, we reuse the house's logic instead of guessing.

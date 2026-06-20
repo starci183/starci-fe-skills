@@ -1,4 +1,4 @@
-# Mindset — feed
+# Decision — feed
 
 When & WHY we choose/shape the **feed** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a feed, we reuse the house's logic instead of guessing.

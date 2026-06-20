@@ -1,4 +1,4 @@
-# Mindset — list
+# Decision — list
 
 When & WHY we choose/shape the **list** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a list, we reuse the house's logic instead of guessing.

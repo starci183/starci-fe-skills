@@ -1,4 +1,4 @@
-# Mindset — media
+# Decision — media
 
 When & WHY we choose/shape the **media** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a media, we reuse the house's logic instead of guessing.

@@ -6,20 +6,21 @@ DECISIONS the teacher makes (and why) into the **journals**, and reading them ba
 ## The house knowledge (it GROWS)
 | Store | Holds | Filled from |
 |---|---|---|
-| **`journals/mindset/<block>.md`** | **decision logs** — *why a scenario chose & shaped a block* (card, sidebar, tabs…) | the teacher's design feedback |
-| **`journals/ux/`** | **page-level UX decisions** (`<page>.md`) + **UX pattern lessons** (`CONTENT.md`) | apply decisions + live web search |
+| **`decision/<block>.md`** | **decision logs** — *why a scenario chose & shaped a block* (card, sidebar, tabs…) | the teacher's design feedback |
+| **`design/`** | **page-level UX** — layout/flow decisions (`<page>.md`) + UX lessons (`CONTENT.md`) | apply decisions + live web search |
+| **`ui/CONTENT.md`** | the **visual system** — tokens, color, spacing, typography | the design system |
 | **`cannon/CONTENT.md`** | FE **code rules** | scanning real `src/` |
 
 ## The loop (no separate merge command)
 ```
-1. /starci-fe-ux-brainstorm   read journals/mindset + journals/ux + cannon  +  SEARCH THE WEB
+1. /starci-fe-ux-brainstorm   read decision + design + cannon  +  SEARCH THE WEB
                               → propose 1–3 layouts + widget mockups
         │  teacher picks one + gives FEEDBACK
         ▼
 2. /starci-fe-ux-apply        build it on-canon
                               → at the END of the task, AUTOMATICALLY write the decisions:
-                                "scenario → chose block → WHY" into journals/mindset/<block>.md,
-                                page UX into journals/ux/, code rules into cannon/   ← the learning
+                                "scenario → chose block → WHY" into decision/<block>.md,
+                                page UX into design/, code rules into cannon/   ← the learning
         ▼
 3. next brainstorm reads the now-richer journals → the skill is smarter
 ```

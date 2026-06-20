@@ -1,4 +1,4 @@
-# Mindset — button
+# Decision — button
 
 When & WHY we choose/shape the **button** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a button, we reuse the house's logic instead of guessing.

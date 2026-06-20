@@ -1,4 +1,4 @@
-# Mindset — stat
+# Decision — stat
 
 When & WHY we choose/shape the **stat** block. A decision log: for a given scenario, which component we
 picked and the reasoning — so next time we design a stat, we reuse the house's logic instead of guessing.

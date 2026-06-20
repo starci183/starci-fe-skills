@@ -9,7 +9,7 @@
         {
             "name": "starci-fe-skills",
             "source": "./",
-            "description": "All 4 StarCi FE skills: starci-fe-ux-brainstorm, starci-fe-ux-apply, starci-fe-cannon-audit, starci-fe-cannon-apply (+ shared journals/ and cannon/ they read & grow)."
+            "description": "All 4 StarCi FE skills: starci-fe-ux-brainstorm, starci-fe-ux-apply, starci-fe-cannon-audit, starci-fe-cannon-apply (+ shared decision/, design/, ui/, cannon/ they read & grow)."
         }
     ]
 }
