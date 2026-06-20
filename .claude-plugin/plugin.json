@@ -1,0 +1,21 @@
+{
+  "name": "starci-fe-skills",
+  "version": "1.0.0",
+  "description": "StarCi frontend skills — UI 2.0 design system for Next.js App Router + React 19 + HeroUI v3 + Tailwind v4. Strict rules, blocks-over-features architecture, AsyncContent conventions, and UX brainstorm/apply workflows.",
+  "author": {
+    "name": "StarCi",
+    "url": "https://github.com/starci183"
+  },
+  "homepage": "https://github.com/starci183/starci-fe-skills",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "frontend",
+    "design-system",
+    "heroui",
+    "nextjs",
+    "react",
+    "tailwind",
+    "ux"
+  ]
+}
