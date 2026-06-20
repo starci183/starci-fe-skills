@@ -17,10 +17,10 @@ description: >
 # /starci-ux-brainstorm — Re-imagine a StarCi page from course-UX refs + the design system (Opus · MAX effort)
 
 Thiết kế LẠI một trang/khối/luồng của StarCi từ **first principles**, neo vào **2 nguồn**:
-1. **Cách các website học/khoá học đầu ngành** giải đúng bài toán đó (thư mục `./refs/` — Coursera, Udemy,
+1. **Cách các website học/khoá học đầu ngành** giải đúng bài toán đó (thư mục `../../refs/` — Coursera, Udemy,
    Duolingo, Khan Academy, Brilliant, Codecademy, edX, Skillshare, Frontend Masters, freeCodeCamp + 5 ref
    cross-cutting: onboarding, catalog-discovery, lesson-player, gamification, pricing-paywall, dashboard-mobile).
-2. **Design system StarCi** (`D:/Repositories/starci-academy/.claude/design/` + `../cannon/CONTENT.md`).
+2. **Design system StarCi** (`D:/Repositories/starci-academy/.claude/design/` + `../../cannon/CONTENT.md`).
 
 Bước này **KHÔNG viết production code** — chỉ brainstorm + chốt hướng (+ widget mockup). CHẠY MAX EFFORT.
 
@@ -35,7 +35,7 @@ Một yêu cầu có thể chạm nhiều lens; nêu rõ lens chính.
 ## Nguyên tắc (đọc kỹ)
 - **Refs = nguồn pattern đã chứng minh, KHÔNG copy nguyên xi.** Mỗi hướng phải neo vào ref cụ thể
   (vd "Coursera left-sidebar accordion", "Duolingo demotion-zone", "Udemy hover-preview card") — đọc file
-  `./refs/<slug>.md` tương ứng, trích cái LÀM TỐT + cái ĐỪNG copy. KHÔNG đoán từ trí nhớ.
+  `../../refs/<slug>.md` tương ứng, trích cái LÀM TỐT + cái ĐỪNG copy. KHÔNG đoán từ trí nhớ.
 - **Grounded in StarCi data + design system.** Đừng vẽ UI cho dữ liệu không có. Field BE/DB có nhưng chưa
   dùng = cơ hội. Mọi đề xuất phải dựng được bằng token + HeroUI v3 + block của StarCi (accent teal `#00a898`,
   layout 3 tầng, `one-progress-bar-at-a-time`, `credit-unified-pool-ui`…).
@@ -46,8 +46,8 @@ Một yêu cầu có thể chạm nhiều lens; nêu rõ lens chính.
 ## Quy trình (MAX effort)
 1. **Khoanh vùng + chốt lens:** trang/khối nào, goal lens chính, ai dùng, cần gì trong ≤30s.
 2. **Đọc `./CONTENT.md`** — playbook + pattern library (catalog / lesson player / challenge / gamification /
-   onboarding / pricing-paywall / dashboard / AI co-pilot). Nó chỉ đúng `refs/<slug>.md` nào cần mở sâu.
-3. **Mở 2–4 `refs/<slug>.md` liên quan** + (nếu cần) research BE/DB StarCi thật (GraphQL op + Postgres
+   onboarding / pricing-paywall / dashboard / AI co-pilot). Nó chỉ đúng `../../refs/<slug>.md` nào cần mở sâu.
+3. **Mở 2–4 `../../refs/<slug>.md` liên quan** + (nếu cần) research BE/DB StarCi thật (GraphQL op + Postgres
    entities = dữ liệu khả dụng) và legacy UX (chỉ để inventory + pain, KHÔNG để copy).
 4. **Map sang design system StarCi:** archetype gần nhất (`design/03`), block tái dùng (`design/02` + cannon),
    token/spacing/3-tầng (`design/01`,`04` + rule drafts). Cái gì có sẵn, cái gì cần block mới.

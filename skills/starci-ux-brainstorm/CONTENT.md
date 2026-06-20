@@ -2,17 +2,17 @@
 
 > Heavy reference for the `starci-ux-brainstorm` skill. It does three things:
 > 1. **Playbook** — how to run a StarCi UX brainstorm from first principles across the 5 goal lenses.
-> 2. **Pattern library** — the course-website UX patterns distilled from `./refs/`, with which platform
+> 2. **Pattern library** — the course-website UX patterns distilled from `../../refs/`, with which platform
 >    does each best, so you can pull the right pattern fast.
 > 3. **Design-system mapping** — how to land a chosen pattern on StarCi (HeroUI v3, accent teal `#00a898`,
 >    3-tier layout, existing blocks + rule drafts), plus the output artifact shape.
 >
-> Every pattern below cross-references a `refs/<slug>.md` file. Open the ref for the concrete detail; this
+> Every pattern below cross-references a `../../refs/<slug>.md` file. Open the ref for the concrete detail; this
 > doc is the map. The refs each already contain a "Takeaways for StarCi" section — treat those as a
 > *starting point* you pressure-test here, not a conclusion.
 >
 > Repo layout: this canon lives at `skills/starci-ux-brainstorm/CONTENT.md`; the lean entry is
-> `SKILL.md` next to it; references live in `./refs/<slug>.md`.
+> `SKILL.md` next to it; references live in `../../refs/<slug>.md`.
 
 ---
 
@@ -315,7 +315,7 @@ owned by the block/container (rail/content `p-6`), feature does placement only.
 - **Difficulty palette:** Easy cyan · Medium yellow · Hard red · Insane purple (`pallettes/difficulty.ts`).
 - **Light + dark** (default dark + enableSystem): test both; use tokens, never hex.
 
-### 3.4 Reuse blocks, not primitives (`design/02-components.md` + `../cannon/CONTENT.md`)
+### 3.4 Reuse blocks, not primitives (`design/02-components.md` + `../../cannon/CONTENT.md`)
 HeroUI v3 first (Card default surface — NO shadow, NO `bg-default/40` override; Chip `size="sm" variant="soft"
 color="accent"`; Alert/Breadcrumbs/Accordion/Modal/ListBox+ScrollShadow/Stepper/Separator/Spinner). Reusable
 inventory: count-chip (BookOpen/Video/Sword + number), meta-chip (Clock "15 phút đọc"), sidebar icon-nav (active =
@@ -350,7 +350,7 @@ in this skill (that's `/ux-apply`).
 # <Page/Component> — UX Brainstorm
 ## Goal lens + objective (the user's one job in ≤30s; who; which lens A–E)
 ## Inventory (what StarCi data/features exist; legacy pains — inventory only, not the design)
-## Refs consulted (refs/<slug>.md + the specific pattern pulled from each)
+## Refs consulted (../../refs/<slug>.md + the specific pattern pulled from each)
 ## Directions (≥2–3) — each: name · ref it neon to · sketch · trade-off
 ## Recommended direction + why
 ## Section → BE/DB field map (+ unused fields = opportunities)
@@ -377,19 +377,19 @@ edit stable rule files (`main.md` / `starci-*.md`) directly. The merge happens v
 
 | ref file | platform / topic | open it for |
 |---|---|---|
-| `refs/coursera.md` | MOOC, credential | week-accordion player, trust stacking, Coach AI, certificate-to-LinkedIn, goal onboarding |
-| `refs/udemy.md` | marketplace | hover-preview cards, sticky purchase sidebar, social-proof saturation, in-player AI tab, fix-the-flat-dashboard |
-| `refs/duolingo.md` | habit/gamified | streak+freeze, unified XP, leagues (promotion/demotion), deferred signup, friction-as-conversion, path metaphor |
-| `refs/khan-academy.md` | mastery, free | named mastery tiers, Learner Queue "do this next", progressive hints, Socratic AI, semantic color tokens, weekly streak |
-| `refs/brilliant.md` | STEM, premium | problem-first, Rive gameboard nodes, streak charges, subject-coded accent, inline paywall, Koji context-aware AI |
-| `refs/codecademy.md` | learn-to-code | 3-pane editor, in-scope AI assistant, weekly-target+streak pairing, hint-before-answer, two-path onboarding |
-| `refs/edx.md` | MOOC, institutional | map-vs-player split (2024), audit/paid two-path gate, subject landing SEO pages, credential-as-conversion |
-| `refs/skillshare.md` | creative, subscription | project-per-module, two-column player + tab architecture, interest-onboarding rails, student-project gallery |
-| `refs/frontend-masters.md` | premium dev | practitioner credibility on cards, dual-pane player, sparse cards, public-profile-as-portfolio, keep-game-layer |
-| `refs/freecodecamp.md` | free nonprofit | step-count progress, two-click-to-editor, verifiable public credential URL, test-as-spec, activity heatmap |
-| `refs/onboarding.md` | cross-cutting | PLG deferred signup, intent funnel, two-persona fork, day-0 gamification container, empty states, DO/DON'T |
-| `refs/catalog-discovery.md` | cross-cutting | search-first hero, card anatomy, faceted filters, recommendation rails, course-about page, DO/DON'T |
-| `refs/lesson-player.md` | cross-cutting | two-column layout, accordion outline, transcript, 3-pane code, sticky prev/next, AI panel, StarCi 3-content-type plan |
-| `refs/gamification.md` | cross-cutting | unified XP, league screen layout, streak-with-freeze, badge split, path metaphor, DO/DON'T, anti-patterns |
-| `refs/pricing-paywall.md` | cross-cutting | soft gate at success moment, inline modal, 3-tier annual-default, AI-credit gate, freemium+gamification, DO/DON'T |
-| `refs/dashboard-mobile.md` | cross-cutting | hero "continue" card, top-bar streak/XP, bottom-nav, density restraint, responsive ladder, freemium lock UI |
+| `../../refs/coursera.md` | MOOC, credential | week-accordion player, trust stacking, Coach AI, certificate-to-LinkedIn, goal onboarding |
+| `../../refs/udemy.md` | marketplace | hover-preview cards, sticky purchase sidebar, social-proof saturation, in-player AI tab, fix-the-flat-dashboard |
+| `../../refs/duolingo.md` | habit/gamified | streak+freeze, unified XP, leagues (promotion/demotion), deferred signup, friction-as-conversion, path metaphor |
+| `../../refs/khan-academy.md` | mastery, free | named mastery tiers, Learner Queue "do this next", progressive hints, Socratic AI, semantic color tokens, weekly streak |
+| `../../refs/brilliant.md` | STEM, premium | problem-first, Rive gameboard nodes, streak charges, subject-coded accent, inline paywall, Koji context-aware AI |
+| `../../refs/codecademy.md` | learn-to-code | 3-pane editor, in-scope AI assistant, weekly-target+streak pairing, hint-before-answer, two-path onboarding |
+| `../../refs/edx.md` | MOOC, institutional | map-vs-player split (2024), audit/paid two-path gate, subject landing SEO pages, credential-as-conversion |
+| `../../refs/skillshare.md` | creative, subscription | project-per-module, two-column player + tab architecture, interest-onboarding rails, student-project gallery |
+| `../../refs/frontend-masters.md` | premium dev | practitioner credibility on cards, dual-pane player, sparse cards, public-profile-as-portfolio, keep-game-layer |
+| `../../refs/freecodecamp.md` | free nonprofit | step-count progress, two-click-to-editor, verifiable public credential URL, test-as-spec, activity heatmap |
+| `../../refs/onboarding.md` | cross-cutting | PLG deferred signup, intent funnel, two-persona fork, day-0 gamification container, empty states, DO/DON'T |
+| `../../refs/catalog-discovery.md` | cross-cutting | search-first hero, card anatomy, faceted filters, recommendation rails, course-about page, DO/DON'T |
+| `../../refs/lesson-player.md` | cross-cutting | two-column layout, accordion outline, transcript, 3-pane code, sticky prev/next, AI panel, StarCi 3-content-type plan |
+| `../../refs/gamification.md` | cross-cutting | unified XP, league screen layout, streak-with-freeze, badge split, path metaphor, DO/DON'T, anti-patterns |
+| `../../refs/pricing-paywall.md` | cross-cutting | soft gate at success moment, inline modal, 3-tier annual-default, AI-credit gate, freemium+gamification, DO/DON'T |
+| `../../refs/dashboard-mobile.md` | cross-cutting | hero "continue" card, top-bar streak/XP, bottom-nav, density restraint, responsive ladder, freemium lock UI |
