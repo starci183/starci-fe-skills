@@ -15,9 +15,10 @@ description: >
 Skill paths: `../../ui`, `../../design`, `../../cannon`. `<src>` = `D:/Repositories/starci-academy`. This is a
 fix-the-spacing/layout pass — it changes code (unlike brainstorm). Run `npm run lint` / tsc when done.
 
-## Step 0 — Load the standard
-Open `../../ui/CONTENT.md` (Radius & spacing + tokens) and `../../design/CONTENT.md` (Layout foundations +
-3-tier law). The rules below are the gist; the CONTENT files are the source of truth.
+## Step 0 — Load the standard (the per-property files are the source of truth)
+Open **`../../ui/gap.md`** (the gap rhythm), **`../../ui/padding.md`**, **`../../ui/margin.md`** — each is
+grounded in a real scan of `src/` with usage counts. Then `../../design/CONTENT.md` (Layout foundations +
+3-tier law). The tables below are the gist; those files decide.
 
 ## The spacing scale — semantic, NOT by size feel (only `0 · 2 · 3 · 4 · 6`)
 | Value | Relationship | Use for |

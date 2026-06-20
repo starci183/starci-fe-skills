@@ -33,9 +33,12 @@ design-system docs + `rules/main.md`). Siblings: `../ux/` (page layout/flow + we
 
 ## Radius & spacing
 - **Radius:** form/modal container `rounded-3xl`; content card `rounded-xl`; code block `rounded-xl`; chip/pill `rounded-full`. Concentric `rounded-2xl` (frame) → `rounded-xl` (field) → `rounded-full`; child < parent; components don't hand-roll frame radius. Tokens: `--radius: 0.5rem`, `--field-radius: 0.75rem`. Shadow is flat (overlay only).
-- **Spacing scale `0 / 2 / 3 / 4 / 6`** (4px grid, gap AND padding — `gap-1.5`/`gap-1`/`p-1/5/8/11` banned). Pick by **semantic relationship**, not size feel:
-  - `0` — one tight block. `2` — coupled (icon↔text, label↔input). `3` — same function (items of one kind, gap inside a card). `4` — roomy container. `6` — different function (text↔CTA, section↔section, card↔card, section padding).
-- Page shell padding `p-3`; container `max-w-[1280px] mx-auto`; section `gap-6`; page-level gutters `gap-8/10/12` (exception). Card padding `px-4 py-3` fixed (in `.card` globals). Vertical scroll regions → HeroUI `ScrollShadow`, not raw `overflow-y-auto`.
+- **Spacing scale `0 / 2 / 3 / 4 / 6`** (4px grid, by **semantic relationship** not size feel). Each property
+  has its own grounded file — these are the source of truth (`/starci-fe-layout-apply` reads them):
+  - **[`gap.md`](gap.md)** — `gap-0` title↔desc · `gap-2` label↔input/coupled · `gap-3` same function (inside a card) · `gap-6` different function (section↔section, card↔card). Snap `gap-1.5` (194 uses) → `gap-2`.
+  - **[`padding.md`](padding.md)** — page shell `p-3` · card `px-4 py-3` (fixed) · rail/panel `p-6` · block owns padding.
+  - **[`margin.md`](margin.md)** — gap-first, margin-last; only `mx-auto` + tiny optical nudges.
+- Container caps: page `max-w-[1280px] mx-auto`; reading column `max-w-3xl mx-auto`. Vertical scroll → HeroUI `ScrollShadow`, not raw `overflow-y-auto`.
 
 ## Typography (Open Sans; type scale)
 Font is **Open Sans** (`next/font`). ⚠️ Known drift: `globals.css` sets `--font-sans: var(--font-inter)` but `--font-inter` is undefined → empty font var. Per-role canonical classes (map to HeroUI `Typography type`):
