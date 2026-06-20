@@ -70,23 +70,31 @@ If you need `!important` to override your own code, a decision is in the wrong l
 
 ## 🚀 Install
 
-**As a Claude Code plugin** (recommended):
+**Install as a Claude Code plugin** — one marketplace, all skills. Every FE dev runs this on their machine:
 
 ```bash
-# clone next to your project (or anywhere Claude Code can see)
-git clone https://github.com/starci183/starci-fe-skills.git
+# inside Claude Code
+/plugin marketplace add starci183/starci-fe-skills
+/plugin install starci-fe-skills@starci-fe-skills
+/reload-plugins
 ```
 
-Then point Claude Code at it as a plugin/marketplace, or copy the `skills/` folders into your project's `.claude/skills/`. Once installed, the skills surface as slash commands:
+The plugin bundles `refs/` + `cannon/CONTENT.md`, so the skills' relative reads still resolve after install.
+Skills surface namespaced as `/starci-fe-skills:<skill>`:
 
 ```
-/fe              build or review UI to the StarCi standard
-/ux-brainstorm   rethink a page from first principles
-/ui-apply        polish the visual layer of a page
-/merge           promote rule drafts into the SSOT
+/starci-fe-ux-brainstorm   brainstorm 1–3 layouts for a page (+ widget mockups)
+/starci-fe-ux-apply        build the chosen layout on-canon + bank the learning
+/starci-fe-cannon-audit    audit existing FE against the code canon
+/starci-fe-cannon-apply    write new FE code on-canon
+/starci-fe-update-mindset  merge UX experience + rule drafts into the stable canon
 ```
 
-**Just want the design system?** Read [`rules/main.md`](rules/main.md) → [`design-system/README.md`](design-system/README.md) → [`patterns/README.md`](patterns/README.md). It's all grounded in real shipped code, not theory.
+**Author / live-edit (maintainer):** clone the repo, add the LOCAL path as a marketplace
+(`/plugin marketplace add D:\Repositories\starci-fe-skills`), edit skills in place, `/reload-plugins` to
+test, then `git commit && git push` to publish for everyone. No reinstall needed while iterating.
+
+**Just want the design system?** Read [`rules/main.md`](rules/main.md) → [`design-system/README.md`](design-system/README.md) → [`cannon/CONTENT.md`](cannon/CONTENT.md). It's all grounded in real shipped code, not theory.
 
 ---
 
