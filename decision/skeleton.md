@@ -29,11 +29,40 @@ Distilled from `06-skeleton.md`.
 
 **Mirror, don't blob.** Copy the real container's class (best example: `MilestoneSidebar/MilestoneSidebarSkeleton` copies `lg:sticky lg:top-16…`). Good copies: `Course/Modules/ModulesSkeleton` (rebuilds the whole `Accordion` + `count` prop), `Content/ChallengeBody/ChallengeCardSkeleton`. Avoid coarse single-block skeletons (`h-48`/`h-64`) when content can be mirrored.
 
-**Content/learn archetype** — `isLoading = useQueryContentSwr().isLoading || !content`; while loading render `ContentHeaderSkeleton` + the REAL `ContentTabBar` (tab bar shows immediately) + a body placeholder; each tab body keeps its own loading branch (ContentBody Skeleton rows, ChallengeBody `ChallengeCardSkeleton`×2, LessonBody `LessonCardSkeleton`).
+**Content/learn archetype** — `isLoading = useQueryContentSwr().isLoading || !content`; while loading render `ContentHeaderSkeleton` + the REAL `ContentTabBar` (tab bar shows immediately) + a body placeholder; each tab body keeps its own loading branch (ContentBody Skeleton rows, ChallengeBody `ChallengeCardSkeleton`×2, LessonBody `LessonCardSkeleton`). **(2026-06-21 — superseded: every one of these branches now goes through `AsyncContent`, not inline `if (isLoading)`. The SHAPE above still holds — header `AsyncContent`, real tab bar between, body `AsyncContent`; only the mechanism changed. See the "force full async content" decision.)**
 
 **Known gaps to fix when touched** — raw `animate-pulse` divs → `Skeleton` (Content/Code*Body, attempt drawers); `Spinner` → skeleton in list/detail (Practice, Quiz tabs); `ModuleSidebar` renders empty `ModuleAccordion modules={[]}` → use `ModulesSkeleton`; `rounded-*` drift in skeletons → follow canonical radius. (Intentional `animate-pulse` in `AIProcessing*` / `MethodologySection` stays.)
 
 ## Decisions (newest first)
+
+### 2026-06-21 — Force ALL loading on content + personal-project through `AsyncContent`
+- **Scenario:** teacher: "force full async content" — kill every inline `if (isLoading) return <Skeleton/>`
+  on the two pages; route ALL data-backed loading through `AsyncContent` (the previous pass had left the
+  content page's inline-ternary archetype in place as a "follow-up"). This entry IS that follow-up.
+- **Migrated (8 files):** `LessonReader/{index, ChallengeBody, ContentBody/ContentBodyV2, CodeExplainingBody,
+  CodeImplementationBody, LessonBody, SandboxBody}` + `PersonalProject/index` (the brief `Task`). Each now
+  `return <AsyncContent isLoading={…} skeleton={<XSkeleton/>}>{body}</AsyncContent>`.
+- **The `const body = …` pattern (KEY to surviving `indent: ["error", 4]`):** wrapping a big content block in
+  AsyncContent children would force a +4 re-indent of every line → noisy diff + indent-rule churn. Instead
+  **extract the loaded tree into `const body = (…)` ABOVE the return**, fold the old empty-branch into it as a
+  ternary (`!items.length ? <Empty/> : <list/>`), then `return <AsyncContent …>{body}</AsyncContent>`. The
+  block keeps its original indentation; only the thin wrapper is new. (AsyncContent's `emptyContent` only takes
+  `EmptyContentProps`, NOT a custom `<XEmpty/>` node — so custom empties stay inside `body`, AsyncContent owns
+  loading.)
+- **Eager-children guards (the gotcha below, hit 2×):** `body` is built every render now, incl. while loading
+  → null-guard any data it touches. `PersonalProject/index`: `displayTask.title` → `displayTask?.title`
+  (+ `?.description`, `?.briefs`). `SandboxBody`: the procedural Sandpack file-rewrite ran *after* the old
+  early-return; now it runs every render → guarded `Object.entries(githubFiles ?? {})` (empty while loading →
+  builds only stubs; the `<SandpackPanel>` element is constructed but AsyncContent doesn't mount it → no iframe).
+- **`LessonReader/index` = the structural win:** the old code branched the WHOLE tree on `isLoading`
+  (duplicated header+tabbar+body twice). Restructured to **header (`AsyncContent`) → REAL `ContentTabBar`
+  (static chrome, always immediate) → body (`AsyncContent`)** — deduped the two branches and pulled the tab bar
+  out as immediate chrome (the rule: static chrome is never skeleton-ised).
+- **Left as Spinner (correct per law — short actions, NOT content):** mutation/streaming spinners in
+  `TaskActions`, `GithubGradingSettings`, `PersonalProjectSubmission`, `AiLab/*`, `ContentBody/ActionToolbar`.
+  Gating-only `progressSwr.isLoading` (inside `useMemo`, no skeleton) in `TaskActions`/`TaskLockedAlert` left.
+  `Discussion` infinite-list (`isLoadingMore`) is its own pattern — untouched.
+- **Verify:** eslint EXIT 0 + `tsc --noEmit` clean on all 8.
 
 ### 2026-06-21 — Skeletons for content + personal-project; "draw the widget FIRST" rule
 - **Scenario:** teacher: "skeleton cho trang content và personal project" + "update rules là skeleton apply

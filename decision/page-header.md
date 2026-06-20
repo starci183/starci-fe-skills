@@ -31,7 +31,25 @@ Distilled from `03-layout-archetypes.md` (the three standard page frames) + the 
 - Header internals: title + description are a tight `gap-0` pair (desc `body-sm muted`); everything else inside the header (meta-row, outcomes) is `gap-3` (same-function = gap-3); gap-6 is only between two DIFFERENT-function regions (header ↔ body). Cut meaningless meta chips (e.g. a linear "Content N/M" that duplicates the rail/pager); a semantic status chip that should pop = `bg-<token>/10 text-<token>` (e.g. read badge = `success` green, override bg to `/10`).
 
 ## Decisions (newest first)
-_(empty — each entry: **scenario** · **chose what** · **WHY** · which page · date)_
+
+### 2026-06-21 — One header scale everywhere = block `PageHeader` (H3 + body-sm)
+- **Scenario:** the two foundations pages had **mismatched** headers — the hub used `Typography type="h1"
+  weight="bold"` (huge), the category page used the legacy `SubPageHeader` (a `@gravity-ui` back-arrow +
+  `gap-1.5` row) at a different scale. Thầy: "đồng bộ size tất cả header và description."
+- **Chose:** every page/section header renders the block **`PageHeader`** → `Typography.Heading level={3}
+  weight="bold"` title (dính `gap-0`) + `Typography type="body-sm" color="muted"` description. Both foundations
+  headers now just feed title+description into `PageHeader`. **No H1/H2** for an in-page header.
+- **Dropped the back arrow:** the category page sat inside the learn sidebar + breadcrumb, so per the
+  sidebar+breadcrumb rule the per-page back arrow is redundant — `SubPageHeader` (legacy, broken-rule) is retired
+  here; the breadcrumb's parent link is the only escape. See [[sidebar]].
+- **WHY:** one header scale across pages = a calm, predictable hierarchy; mixed H1/H2/legacy headers make each
+  page feel like a different app. `PageHeader` is the single source so the scale can't drift.
+
+## Gotchas
+- **Every page MUST have breadcrumbs (thầy, strict).** A content/sub page renders a breadcrumb trail (HeroUI
+  `Breadcrumbs`) as tier-1, above the header — either standalone above the header or via `PageHeader`'s
+  `breadcrumb` slot. Don't ship a page that drops the user with no "where am I / how do I get back" trail. When
+  breadcrumb is present, also drop any per-page back arrow (it's redundant — see the decision above).
 
 ## Gotchas
 - **Cap content width — don't let a page stretch edge-to-edge on wide monitors.** A content/index page wraps

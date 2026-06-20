@@ -22,7 +22,54 @@ Metrics, progress, charts, roadmaps.
 - **Consistency (STRICT):** 3 dot+label spots (difficulty legend, donut legend, `LanguageChip`) must share size: dot `size-3` + label `body-xs` muted. One highlighted color per cluster, rest muted. Skeleton mirrors the real layout.
 
 ## Decisions (newest first)
-_(empty — each entry: **scenario** · **chose what** · **WHY** · which page · date)_
+
+### 2026-06-21 — Course "/learn" → content & challenge dashboard (Direction A)
+- **Scenario:** the `/learn` landing rendered headline numbers (95 lessons, **329 challenges**) as tiny muted
+  text + buried challenge difficulty in accordion rows — "tục". Scope (thầy): **content & challenge only**.
+- **Chose:** a **2-column dashboard** (act left / see right, `gap-8`). RIGHT col = `grid grid-cols-2 gap-3` of
+  **top-level `MetricCard`** (content n/m · challenge n/m, NOT inside `LabeledCard`) + a `LabeledCard`
+  `ProgressMeter` (overall completion, showValue) + a `LabeledCard` **`SegmentBar` of challenge counts by
+  difficulty** (success→warning→danger→`--difficulty-insane`, honest counts, **no `max`** = breadth not
+  progress, since 0 done would make a progress bar look empty/sad). LEFT = continue hero + search + the
+  module→lesson→challenge accordion (preserved).
+- **WHY:** `MetricCard` makes the KPIs read as KPIs; the difficulty `SegmentBar` surfaces the 329-challenge
+  breadth as a marketing/value signal at a glance. Pure-mix bar celebrates depth, not (empty) progress.
+- **Files:** `CourseContents/index.tsx` + its skeleton; i18n `courseContents.{lessonsLabel,challengesLabel,
+  lessonsHint,challengesHint,continueEyebrow,challengesByDifficulty,difficulty.*}` (vi+en). No new BE. Dropped
+  the capstone milestones section (out of scope). · course learn landing · 2026-06-21
+
+### 2026-06-21 — Personal-project DASHBOARD (no-`taskId` landing) · Direction A "Project HQ"
+- **Scenario:** `/personal-project` index rendered `<></>` (empty centre column until you click a task) — "tục".
+  Thầy: render a **dashboard** khi URL chưa có `tasks/[id]`. Chose Direction A (overview-first) from the brainstorm.
+- **Switch mechanism:** the personal-project LAYOUT always mounts `PersonalProjectWorkspace`, so the dashboard/task
+  switch lives THERE: `const taskId = typeof useParams().taskId === "string" ? … : undefined` → no taskId →
+  `<PersonalProjectDashboard/>`, else the read-left/act-right split. (Both route `page.tsx` stay empty — layout drives.)
+- **Composition (grounded in real BE fields):** 3-tier (H3 `finalProject.dashboard.title` + desc) → **3-up KPI row** +
+  **4-stat ribbon**.
+  - **Mixed-content KPI cards = `LabeledCard`, NOT `MetricCard`.** Progress (big % + `ProgressMeter` bar + n/m),
+    next-task (title + the ONE primary `Button` "Tiếp tục" → routes to `currentTask`), github (status chip + repo·branch).
+    `MetricCard` is value+label+hint only — can't hold a button/bar/chip → `LabeledCard` (label-above-card, flexible body)
+    is right here. The KPI-row-of-`MetricCard` baseline applies to PURE metric cells; these aren't pure.
+  - **Stat ribbon = `StatPair` ×4** (frameless, `gap-6 border-t pt-3`): passed · locked · attempts · avg score — exactly
+    `StatPair`'s "sit inside a stat strip" role.
+  - **Did NOT repeat the milestone list** — the left rail (`MilestoneOutline`) owns navigation; the dashboard complements
+    it (overview), avoiding two nav surfaces (why Direction B was rejected).
+- **Data sourcing gotchas:**
+  - `buildMilestoneTaskProgressLookup` narrows to `{ completed }` only → done/attempts/avg-score must come from the RAW
+    `milestoneTaskProgress.completionTasks` items (`lastScore`/`maxScore`/`numAttempts` live there). total+locked from the
+    full milestone tree (`isPersonalProjectTaskActionUnlocked`).
+  - **GitHub connection = read `state.user.enrollment.personalProjectGithubUrl/Branch` from redux, NOT the github zustand
+    store** — that store is only *seeded* inside the task panel (`usePersonalProjectGithubForm`), which isn't mounted on the
+    dashboard → store would read empty. Enrollment is the source of truth. (Dropped `lang` from the card: it's a per-grading
+    choice, not a connection attribute.)
+  - Connection/"all done" chips follow [[chip]]: `variant="secondary" color="success" + bg-success/10 text-success`.
+- **Audit fix bundled:** the dashboard renders the missing **H3 header** + a clean 3-tier (`max-w-3xl mx-auto p-6`,
+  `h-3` spacer, `gap-0` title/desc pair). The layout-level breadcrumb misalignment (breadcrumb in its own `p-6` vs centred
+  content) is shared with the task view → left as a follow-up (refactoring the shared layout would touch the task split).
+- **States:** `AsyncContent` (skeleton mirrors 3 cards + 4 stats; `isEmpty` → no-milestones EmptyContent).
+- **New block:** none new survived — first wrote a `StatTile` then DELETED it on finding `StatPair` already is exactly that.
+- **Files:** NEW `PersonalProject/PersonalProjectDashboard/{index,PersonalProjectDashboardSkeleton}`; wired
+  `PersonalProjectWorkspace`; i18n `finalProject.dashboard.*` (vi+en). eslint + `tsc --noEmit` clean.
 
 ## Gotchas
 _(empty)_

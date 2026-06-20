@@ -8,6 +8,24 @@ overlay reuses the house's logic instead of guessing.
 
 ## Decisions (newest first)
 
+### 2026-06-21 — Read-heavy detail = dedicated PAGE, not a modal
+- **Scenario:** clicking a foundation resource opened the markdown/video in a full-screen `FoundationModal`.
+  Thầy: "bỏ bấm vô bài đọc mở modal, render trang mới được không."
+- **Chose:** **dedicated page** at `/foundations/[categoryId]/[foundationId]` (`FoundationResourceLayout`):
+  breadcrumb → `PageHeader` (H3) + full `FoundationMeta` → `FoundationResourceBody` (markdown/video), capped
+  `max-w-3xl`. The list's row click now NAVIGATES (document/video) or `window.open`s (external link) — no overlay.
+  Considered a right-side master-detail split but rejected: the learn shell already has a left rail → 3 columns,
+  cramped, needs a mobile fallback.
+- **WHY (modal vs page rule):** a **modal is for a short, focused task you return FROM** (confirm, quick form,
+  pick one thing) — it traps focus and has no URL. **Substantial, readable, shareable content** (an article, a
+  video, a guide) wants a **real page**: its own URL (deep-link + back/forward), breadcrumb escape, full reading
+  width, scrolls naturally, works on mobile. Don't trap a document in a modal. A route already existed for the
+  item, so the page was the natural fit.
+- **Files:** NEW `Foundations/FoundationResourceLayout` + `Foundations/FoundationResourceBody`; route
+  `[foundationId]/page.tsx` → the new layout; `FoundationCard` onPress navigates/opens-external; removed the
+  list-layout deep-link auto-open effect + deleted the dead `useOpenFoundationResource` hook. The old
+  `FoundationModal` + `useFoundationOverlayState` are orphaned → flagged for cleanup (separate task).
+
 ### 2026-06-21 — unified shell, NO header divider
 - **Scenario:** Drawer and Modal looked different — the Drawer had a `border-b` line between header and body
   (cannon 5.8 mandated it), the Modal didn't. The same line showed up in the new content-AI chat popover.
