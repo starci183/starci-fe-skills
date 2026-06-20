@@ -7,7 +7,7 @@ proven products use*, not guesses.
 
 ## What it's for
 
-- **Primary consumer:** the [`starci-ux-brainstorm`](../skills/starci-ux-brainstorm/SKILL.md)
+- **Primary consumer:** the [`starci-fe-ux-brainstorm`](../skills/starci-fe-ux-brainstorm/SKILL.md)
   skill — when re-imagining a StarCi page it opens 2–4 relevant refs, lifts the parts those
   products do well, and notes what *not* to copy.
 - **Also useful for** any FE design/UX decision (component look, layout archetype, gamification,

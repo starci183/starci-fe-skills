@@ -1,6 +1,6 @@
 # StarCi UX Brainstorm — CONTENT.md
 
-> Heavy reference for the `starci-ux-brainstorm` skill. It does three things:
+> Heavy reference for the `starci-fe-ux-brainstorm` skill. It does three things:
 > 1. **Playbook** — how to run a StarCi UX brainstorm from first principles across the 5 goal lenses.
 > 2. **Pattern library** — the course-website UX patterns distilled from `../../refs/`, with which platform
 >    does each best, so you can pull the right pattern fast.
@@ -11,7 +11,7 @@
 > doc is the map. The refs each already contain a "Takeaways for StarCi" section — treat those as a
 > *starting point* you pressure-test here, not a conclusion.
 >
-> Repo layout: this canon lives at `skills/starci-ux-brainstorm/CONTENT.md`; the lean entry is
+> Repo layout: this canon lives at `skills/starci-fe-ux-brainstorm/CONTENT.md`; the lean entry is
 > `SKILL.md` next to it; references live in `../../refs/<slug>.md`.
 
 ---

@@ -8,8 +8,9 @@ description: >-
   components/hooks/slices/forms/styling follow the house patterns. Reads the shared
   canon at ../../cannon/CONTENT.md and checks files slice-by-slice (structure,
   components, data fetching, state, forms, types, styling, routing), then reports
-  findings ranked by severity. NOT for writing new code — use starci-fe-cannon-apply
-  for that.
+  findings ranked by severity and PERSISTS the report to the app's `.claude/memory/audits/`
+  so findings are saved and re-checkable across sessions. NOT for writing new code — use
+  starci-fe-cannon-apply for that.
 ---
 
 # StarCi FE — Pattern Audit (legacy / existing source)
@@ -108,3 +109,14 @@ Cross-reference **Appendix A** — if a finding is already a known ledger entry,
 just confirm it's still present). End with a short summary table (counts per severity) and the top 3
 highest-leverage fixes. Do NOT auto-edit unless the user explicitly asks — this skill reports; the apply
 skill changes code.
+
+## Step 4 — Persist the report to `.claude/memory` (save findings)
+Write the audit report into the **source app's** memory so it survives the session and can be re-checked:
+`<source>/.claude/memory/audits/<scope-slug>.md` (`<source>` = `D:/Repositories/starci-academy`;
+`<scope-slug>` = the audited unit, e.g. `features-learn-LessonReader` or `slice-3-data`).
+
+The file holds: the scope + date, the prioritized findings table (`file:line` · canon rule ID · severity ·
+one-line fix), and the per-severity counts. On a **re-audit of the same scope**, read the existing file
+first and mark each prior finding **fixed / still-present / new** instead of starting blank — so the memory
+tracks drift over time. This is the audit counterpart to how `starci-fe-ux-brainstorm` persists current-UX
+inventories to `.claude/memory/ux/`.
