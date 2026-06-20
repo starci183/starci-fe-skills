@@ -1,61 +1,64 @@
 ---
 name: starci-fe-update-mindset
 description: >
-  Fold pending StarCi FE "draft" notes — new conventions, patterns, or UX principles jotted down
-  mid-coding — into the STABLE knowledge: the code canon (`cannon/CONTENT.md`), the app's visual/UX
-  rules (`<app>/.claude/rules/`), and the ux-brainstorm playbook. Keeps the canon/skills fresh and
-  grounded without editing stable files mid-build: you stage a concept as a draft, later run this to
-  merge it home (newest-wins), then it deletes the merged draft. Use when the user says "merge drafts",
-  "cập nhật mindset", "update canon", "fold rules", "gộp draft", "/merge", or after accumulating draft
-  notes during a coding session. Pairs with the drafts concept used across StarCi skills.
+  Distill accumulated StarCi FE learning into the stable knowledge. Two jobs: (1) UX MERGE — when
+  `<src>/.claude/memory/ux/exp/` has ~5+ experience files (recorded by /starci-fe-ux-apply), merge them
+  into `<src>/.claude/ux/MINDSET.MD` so /starci-fe-ux-brainstorm keeps getting smarter; (2) DRAFT MERGE —
+  fold pending code/visual rule drafts (`cannon/drafts/*`, `<src>/.claude/rules/drafts/*`) into the stable
+  canon (`cannon/CONTENT.md`) / app rules, newest-wins, then delete the merged drafts. Use when the user
+  says "merge mindset", "cập nhật mindset", "gộp kinh nghiệm ux", "merge exp", "merge drafts", "update
+  canon", "fold rules", "/merge", or after ~5 exp files accumulate.
 ---
 
-# /starci-fe-update-mindset — fold drafts into the stable canon/rules
+# /starci-fe-update-mindset — distill experience + drafts into stable knowledge
 
-The mindset stays fresh through a **draft → merge** loop, never by editing stable files mid-build:
-1. While coding, a new convention / pattern / UX principle is jotted into a **draft** file.
-2. This skill later reviews every draft, merges each into its correct stable home, reconciles
-   conflicts (**newest wins**), then **deletes** the merged draft.
+`<src>` = the FE app repo (`D:/Repositories/starci-academy`). Skill-relative paths (`../../cannon/…`)
+point inside the shared `starci-fe-skills` repo.
 
-`<app>` = the FE app repo (`D:/Repositories/starci-academy`). Skill paths below are relative to this
-skill file inside the `starci-fe-skills` repo.
+Two independent merges — do whichever the user asks for (or both):
 
-## Step 1 — Gather drafts (two staging areas)
+---
+
+## JOB 1 — UX experience → `MINDSET.MD` (the main loop)
+The brainstorm/apply loop drops one experience file per applied layout into
+`<src>/.claude/memory/ux/exp/<name>.md`. After ~5 accumulate, distill them so the mindset stays sharp.
+
+1. **Read** every `<src>/.claude/memory/ux/exp/*.md` + the current `<src>/.claude/ux/MINDSET.MD` (if any).
+2. **Distill, don't concatenate.** Extract the durable LESSONS that recur across exp files — what layout
+   moves the teacher keeps choosing, what gets rejected, house taste, which refs/archetypes win for which
+   page type, gamification/paywall/AI-panel preferences. Drop one-off specifics.
+3. **Write** `<src>/.claude/ux/MINDSET.MD` as a tight, organized mindset (by page-type / by lens), each
+   principle phrased as a reusable rule with a one-line "why" + the exp file(s) it came from.
+   **Newest exp wins** on conflict.
+4. **Archive the merged exp.** Move the consumed `exp/*.md` to `exp/_merged/` (or delete) so the folder
+   re-accumulates toward the next ~5. Keep any exp that wasn't distilled and say why.
+5. Report: which exp files were merged, the new/changed mindset principles, what was dropped as one-off.
+
+> `MINDSET.MD` lives in the app at `.claude/ux/MINDSET.MD` (NOT under `memory/`). The `legacy/` and `exp/`
+> inventories under `.claude/memory/ux/` are raw material — only this skill rolls them up into the mindset.
+
+---
+
+## JOB 2 — Rule drafts → stable canon / rules
+Stage new conventions as drafts mid-coding (never edit stable files in place); this folds them home.
+
 | Draft location | Holds | Merges INTO |
 |---|---|---|
-| `../../cannon/drafts/*.md` | new **code-pattern** rules (structure, components, data, state, forms, types, styling, routing) | `../../cannon/CONTENT.md` — the matching SLICE |
-| `<app>/.claude/rules/drafts/*.md` | new **visual / UX** rules + brainstorm principles | `<app>/.claude/rules/starci-*.md` or design docs; brainstorm-only principles → `../starci-fe-ux-brainstorm/CONTENT.md` |
+| `../../cannon/drafts/*.md` | new **code-pattern** rules | `../../cannon/CONTENT.md` — the matching SLICE (+ Appendix A ledger) |
+| `<src>/.claude/rules/drafts/*.md` | new **visual / UX** rules | `<src>/.claude/rules/starci-*.md` or `.claude/design/`; brainstorm principles → `../starci-fe-ux-brainstorm/CONTENT.md` |
 
-Read every draft in both folders. If both are empty, say so and stop.
+1. Read every draft in both folders (if empty, say so).
+2. Classify each → exact target section. Code law (RULE · EXAMPLE real `src/...` path · DO/DON'T ·
+   VIOLATION) → the right `cannon/CONTENT.md` SLICE. Visual → the element rule / design doc.
+3. Merge concisely in the canon's voice — fold into an existing rule when it's a refinement; add a new
+   numbered rule only when genuinely new. **Newest draft wins** on conflict; keep claims grounded in a
+   real `src/...` path (un-evidenced hunches stay as drafts).
+4. `git rm` each merged draft; leave un-mergeable ones with a note.
 
-## Step 2 — Classify each draft → pick its home
-For each draft, decide where it belongs and the EXACT target section:
-- **Code law / violation** (a `RULE` + `DO/DON'T` + `VIOLATION`) → `cannon/CONTENT.md`, the right **SLICE**
-  (1 Structure · 2 Components · 3 Data · 4 State · 5 Forms · 6 Types · 7 Styling · 8 Routing). If it adds
-  a new known-drift, also append a row to **Appendix A** (the inconsistency ledger).
-- **Visual / element styling** (button/card/chip/spacing/token) → the app's `starci-<element>.md` rule
-  file or `.claude/design/` doc.
-- **Brainstorm / UX-method principle** (how to think about a layout, a new ref takeaway) →
-  `starci-fe-ux-brainstorm/CONTENT.md`.
-- A draft naming the destination explicitly (e.g. "File/§ đích khi /merge: …") → obey it.
+---
 
-## Step 3 — Merge concisely (do NOT bloat)
-- Integrate the rule in the canon's voice: **RULE · EXAMPLE (real file path) · DO/DON'T · VIOLATION**.
-  Keep it tight — fold into an existing rule when it's a refinement; add a new numbered rule only when
-  it's genuinely new.
-- **Reconcile conflicts: newest draft wins.** If a draft contradicts an existing stable rule, update the
-  stable rule and note nothing about the draft (the stable doc is the single source of truth afterward).
-- Keep every claim grounded — cite a real `src/...` path. If a draft is an unproven hunch with no
-  in-repo evidence, leave it as a draft and flag it instead of merging.
-
-## Step 4 — Delete merged drafts + report
-- `git rm` (or delete) each draft that was successfully merged. Leave un-mergeable drafts in place.
-- Report: a table of `draft → destination section`, what changed, any conflicts resolved (and which side
-  won), and the drafts left behind with why.
-- **Do NOT push.** Stage the changes and let the user review + `git push` (their publish step).
-
-## Notes
-- This is the **canon/skills** counterpart of the lighter `merge` skill (which only folds visual rule
-  drafts). When both apply, prefer this one — it covers `cannon/` + the skills too.
-- The `.claude/memory/` folders (`ux/`, `audits/`) are **persisted analysis**, not drafts — never merge
-  or delete those here; they are owned by `starci-fe-ux-brainstorm` / `starci-fe-cannon-audit`.
+## Always
+- **Do NOT push.** Stage changes; the user reviews + `git push` (their publish step).
+- Report a table: source (exp file / draft) → destination → what changed → conflicts resolved (winner).
+- This is the canon/skills counterpart of the lighter `merge` skill — prefer this when `cannon/` or the
+  UX mindset is involved.

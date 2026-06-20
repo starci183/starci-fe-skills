@@ -1,93 +1,93 @@
 ---
 name: starci-fe-ux-brainstorm
 description: >
-  Re-imagine / propose the UX of a StarCi Academy page from first principles. Two-phase: (1) read the
-  page's CURRENT UX from the source app and PERSIST it to the app's `.claude/memory/ux/` so it's saved,
-  not re-derived; (2) when a new layout is needed, propose it by combining that saved memory + the
-  competitor `refs/` library + the StarCi design system — brainstorming layout, components, and
-  functionality, and proposing MINOR backend tweaks (a GraphQL field/query/projection) when the UX goal
-  needs data the backend doesn't yet expose. Five goal lenses: UX-only, marketing, strategic
-  communication, component design, page layout. Output = a brainstorm doc + recommendation (+ widget
-  mockup). NO production code (backend deltas are proposed, not written). Run with MAX effort (Opus).
-  Trigger on `/starci-fe-ux-brainstorm`, "đề xuất layout", "brainstorm trang/layout", "thiết kế lại
-  trang", "thiết kế component", "design layout", "bố cục trang", "nghĩ ux", "góc marketing trang".
+  Brainstorm 1–3 new layouts for a StarCi Academy page, then draw widget mockups for the user to choose.
+  The loop: B1 — read the page's CURRENT state from the FE source and save it to
+  `<src>/.claude/memory/ux/legacy/<name>.md`; B2 — load accumulated experience from
+  `<src>/.claude/memory/ux/exp/` + the distilled `<src>/.claude/ux/MINDSET.MD` + the shared course-UX
+  `refs/` library, distill them, and brainstorm 1–3 fresh layouts (components, functionality, optional
+  MINOR backend deltas) + render widget mockups. The user then picks via `/starci-fe-ux-apply` (which
+  records experience to `.claude/memory/ux/exp/<name>.md`); after ~5 exp files, `/starci-fe-update-mindset`
+  merges them into MINDSET.MD. NO production code here. Run with MAX effort (Opus). Trigger on
+  `/starci-fe-ux-brainstorm`, "đề xuất layout", "brainstorm trang/layout", "thiết kế lại trang",
+  "design layout", "bố cục trang", "nghĩ ux".
 ---
 
-# /starci-fe-ux-brainstorm — propose a StarCi layout from saved UX memory + course-UX refs (Opus · MAX effort)
+# /starci-fe-ux-brainstorm — brainstorm 1–3 layouts from legacy state + accumulated mindset + refs (Opus · MAX)
 
-Đề xuất / thiết kế LẠI một trang·khối·luồng của StarCi từ **first principles**, neo vào **3 nguồn**:
-1. **UX HIỆN CÓ của chính app**, đã capture + lưu ở `<source>/.claude/memory/ux/` (xem Phase 1).
-2. **Cách các website học/khoá học đầu ngành** giải bài toán đó (`../../refs/` — xem `../../refs/CONTENT.md`).
-3. **Design system StarCi** (`../../cannon/CONTENT.md` + `<source>/.claude/design/`).
+Two repos in play:
+- **shared skills repo** = `https://github.com/starci183/starci-fe-skills` (this repo) — holds `refs/`,
+  `cannon/`, and these skills. Refs are at `../../refs/` (local clone) — see `../../refs/CONTENT.md`.
+- **`<src>` = the FE app source** (`D:/Repositories/starci-academy`) — where you read state and where the
+  `.claude/memory/` + `.claude/ux/` learning files live.
 
-`<source>` = repo app FE (`D:/Repositories/starci-academy`). **KHÔNG viết production code** — brainstorm + chốt
-hướng (+ widget mockup); backend chỉ **đề xuất chỉnh nhẹ**, không tự sửa ở đây.
+This skill **does NOT write production code** — it captures state, brainstorms 1–3 layouts, and draws
+widget mockups. Applying a chosen layout is `/starci-fe-ux-apply`.
 
-## Năm "goal lens" (chốt mục tiêu trước khi brainstorm)
-- **UX-only** — luồng, trạng thái, friction, information architecture của trang.
-- **Marketing** — trang/khối bán cái gì, conversion lever, trust signal, social proof, value-gate.
-- **Strategic communication** — trang nói gì với ai, thứ tự thông điệp, tone, primary message.
-- **Component design** — 1 component cụ thể (card, paywall modal, league row, streak widget, AI panel…).
-- **Page layout** — bố cục tổng (archetype, cột, rail, spacing rhythm, 3 tầng).
-Một yêu cầu có thể chạm nhiều lens; nêu rõ lens chính.
+## The loop (B1 → B2 → B3 → merge)
 
-## Quy trình (MAX effort)
+```
+B1  read current state   ──►  <src>/.claude/memory/ux/legacy/<name>.md      (this skill)
+B2  load exp + MINDSET + refs  ──►  brainstorm 1–3 layouts + widget         (this skill)
+B3  user picks → apply   ──►  /starci-fe-ux-apply + write exp/<name>.md      (apply skill)
+    every ~5 exp files   ──►  /starci-fe-update-mindset → .claude/ux/MINDSET.MD
+```
 
-### Phase 0 — Khoanh vùng + chốt lens (≤30s)
-Trang·khối nào, goal lens chính, ai dùng, mục tiêu là gì.
+## Five goal lenses (chốt mục tiêu trước)
+UX-only · Marketing · Strategic communication · Component design · Page layout. Một yêu cầu có thể chạm
+nhiều lens — nêu rõ lens chính trước khi brainstorm.
 
-### Phase 1 — Đọc UX hiện có → **LƯU vào `.claude/memory`** (bắt buộc)
-Mục tiêu: KHÔNG đào lại hiện trạng mỗi lần — capture một lần, persist, tái dùng.
-1. Mở `<source>/.claude/memory/ux/<page-slug>.md`.
-   - **Có rồi & còn đúng** → đọc, dùng làm baseline (đừng dựng lại).
-   - **Chưa có / đã cũ** → dựng lại từ source rồi GHI vào file đó.
-2. Khi (re)build, đọc source thật và ghi lại **bộ nhớ UX hiện trạng**:
-   - **Route** (`app/[locale]/…/page.tsx`) + feature/blocks render nó.
-   - **Dữ liệu trang đang hiện** = GraphQL op (`modules/api`, `hooks/swr`) + Postgres entity tương ứng
-     (field nào dùng, field nào BE có mà UI chưa dùng = cơ hội).
-   - **Layout & sections hiện tại**, các **state** (loading/empty/error), và **pain points**.
-3. Format file `.claude/memory/ux/<page-slug>.md`: `# UX hiện trạng — <page>` → route · components · data(GraphQL+entity)
-   · sections · states · pain points · (cuối) "đề xuất hiện tại" (điền ở Phase 4). Đây là **bộ nhớ chung**, các
-   lần brainstorm sau đọc thẳng.
+---
 
-### Phase 2 — Nạp refs + design system
-- Đọc `./CONTENT.md` (playbook) → nó chỉ đúng `../../refs/<slug>.md` nào cần (hoặc tra `../../refs/CONTENT.md`).
-- Mở **2–4 `../../refs/<slug>.md`** liên quan (trích cái LÀM TỐT + cái ĐỪNG copy — KHÔNG đoán từ trí nhớ).
-- Map design system: archetype gần nhất + block tái dùng (`../../cannon/CONTENT.md` + `<source>/.claude/design/`).
+## B1 — Read current state → save to `legacy/<name>.md`
+Capture the page's CURRENT UX once, persist it, reuse it.
+1. `<name>` = the page slug (e.g. `lesson-reader`, `dashboard`, `course-catalog`).
+2. Open `<src>/.claude/memory/ux/legacy/<name>.md`.
+   - **Exists & still accurate** → read it, use as baseline (don't re-derive).
+   - **Missing / stale** → rebuild from the real source, then WRITE it.
+3. When (re)building, read `<src>/src` and record:
+   - **Route** (`app/[locale]/…/page.tsx`) + the feature/blocks that render it.
+   - **Data shown** = GraphQL op (`modules/api`, `hooks/swr`) + Postgres entity (which fields are used;
+     which the BE exposes but the UI ignores = opportunity).
+   - **Layout & sections**, the **states** (loading/empty/error), and the **pain points**.
+4. File shape: `# Legacy UX — <name>` → route · components · data (GraphQL + entity) · sections · states ·
+   pain points. This is the saved baseline B2 builds on.
 
-### Phase 3 — Đề xuất layout mới (khi có layout mới)
-Kết hợp **(memory UX hiện có) + (refs) + (design system)** → brainstorm:
-- **Layout** — chọn archetype, cột/rail, spacing 3 tầng.
-- **Components** — block/feature tái dùng; **đề xuất block MỚI** nếu thiếu (mô tả API + thuộc tầng nào).
-- **Chức năng** — feature/tương tác mới (vd filter, hover-preview, streak widget…).
-- **Minor backend (được phép):** nếu mục tiêu UX cần dữ liệu BE **chưa expose** → ĐỀ XUẤT chỉnh nhẹ:
-  thêm field vào GraphQL ObjectType, 1 query/resolver mỏng, hay tweak projection/CQRS read-model. Ghi rõ
-  **"⚙️ minor BE change"** + scope nhỏ (không đập kiến trúc, không migration nặng). Chỉ ĐỀ XUẤT — không tự sửa BE.
+## B2 — Load experience + mindset + refs → brainstorm 1–3 layouts + widget
+Pull together THREE knowledge sources, then diverge:
+1. **Accumulated experience** — read every `<src>/.claude/memory/ux/exp/*.md` (past applied-layout
+   learnings) **and** the distilled `<src>/.claude/ux/MINDSET.MD` (the merged mindset). These encode "what
+   worked / what the teacher chose / house taste" — weight them heavily.
+2. **Course-UX refs** — open the 2–4 relevant `../../refs/<slug>.md` (use `../../refs/CONTENT.md` to pick;
+   index at the bottom of this file). Lift what they do well; note what NOT to copy.
+3. **Design system** — `../../cannon/CONTENT.md` (FE code canon: blocks/features, buildable) +
+   `<src>/.claude/design/` (tokens, archetypes, accent teal `#00a898`, 3-tier layout).
 
-### Phase 4 — Brainstorm hướng + chốt
-- **≥2–3 hướng** khác nhau (mỗi hướng neo ref cụ thể + trade-off) → **CHỐT 1 + lý do**.
-- Bảng **section → dữ liệu** (field BE/DB; đánh dấu field cần "⚙️ minor BE change").
-- Empty/loading/error + a11y + dark mode tính từ đầu.
-- Cập nhật mục "đề xuất hiện tại" trong `.claude/memory/ux/<page-slug>.md`.
+Then **brainstorm 1–3 new layouts**, each:
+- a distinct direction anchored to a specific ref + an exp/MINDSET lesson + an archetype;
+- **components** (reuse StarCi blocks/features; propose a NEW block if needed — name its API + tier);
+- **functionality** (new interactions/features the layout enables);
+- **⚙️ minor BE change (allowed, proposed only):** if the layout needs data the BE doesn't expose, propose
+  a small delta — a GraphQL field on an ObjectType, a thin query/resolver, a projection tweak. Scope it
+  small (no architecture rework, no heavy migration). Propose, never write BE here.
+- section → data table; empty/loading/error + a11y + dark mode considered from the start.
 
-### Phase 5 — Output
-- Doc brainstorm cạnh trang: `<source>/src/components/features/<Feature>/UX-BRAINSTORM.md` + tóm tắt chat
-  (mục tiêu · IA mới · các hướng + hướng chốt · bảng section→data · ref neo · BE delta · cắt/thêm).
-- **VẼ WIDGET khi đề xuất LAYOUT/COMPONENT MỚI** (bắt buộc): `read_me` module `mockup` → `show_widget`
-  render 1–3 scenario cạnh nhau (CSS vars, accent teal) cho thầy NHÌN + CHỌN; đánh dấu scenario đề xuất.
-- **KHÔNG production code.** Thầy chọn xong → `/ux-apply` mới dựng FE; BE delta để thầy duyệt riêng.
+**Draw the widget (mandatory for new layouts):** `read_me` module `mockup` → `show_widget` rendering the
+1–3 layouts side by side (CSS vars, accent teal), each labelled; mark the recommended one. The user looks
+and chooses.
 
-→ Feedback bất cứ lúc nào → ghi `<source>/.claude/rules/drafts/<temp>.md` (rút nguyên tắc tổng quát), KHÔNG sửa
-file rule ổn định trực tiếp.
+## B3 — Handoff to apply (not this skill)
+The user picks a layout and runs **`/starci-fe-ux-apply`**, which builds the FE for the chosen direction
+and records the learning to `<src>/.claude/memory/ux/exp/<name>.md` (what was chosen, why, what to repeat).
+Any `⚙️ minor BE change` is reviewed/applied separately. **This brainstorm skill stops at the widget.**
 
-## Nguyên tắc (đọc kỹ)
-- **Memory-first:** luôn đọc/ghi `.claude/memory/ux/<page>.md` — hiện trạng là tài sản lưu lại, không đào lại.
-- **Refs = pattern đã chứng minh, KHÔNG copy nguyên xi.** Mỗi hướng neo ref cụ thể (vd "Coursera left-sidebar
-  accordion", "Duolingo demotion-zone"). Adapt theo model StarCi (freemium + gamified + AI credit + coding challenge).
-- **Grounded + buildable:** dựng được bằng token + HeroUI v3 + block StarCi (accent teal `#00a898`, layout 3 tầng).
-  Ưu tiên data BE có sẵn; thiếu thì **đề xuất minor BE change** rõ ràng — đừng vẽ UI cho data không thể có.
+## Merge cadence
+After ~5 files accumulate in `<src>/.claude/memory/ux/exp/`, run **`/starci-fe-update-mindset`** to distill
+them into `<src>/.claude/ux/MINDSET.MD` — so B2 keeps getting smarter without re-reading every exp file.
 
-## Khi nào mở ref nào (quick index — chi tiết trong CONTENT.md)
+---
+
+## Which ref when (quick index — detail in CONTENT.md)
 - Catalog / homepage / discovery / search / cards → `catalog-discovery.md` + `coursera.md`, `udemy.md`, `skillshare.md`.
 - Lesson reader / video / transcript / notes / 3-pane code editor → `lesson-player.md` + `codecademy.md`, `udemy.md`, `khan-academy.md`.
 - XP / streak / league / badge / progress → `gamification.md` + `duolingo.md`, `brilliant.md`, `khan-academy.md`.
@@ -96,3 +96,5 @@ file rule ổn định trực tiếp.
 - Dashboard / home / "continue" card / mobile / bottom-nav → `dashboard-mobile.md` + `codecademy.md`, `coursera.md`.
 - AI co-pilot panel / Socratic tutor / hint ladder → `coursera.md`, `udemy.md`, `khan-academy.md`, `codecademy.md`, `brilliant.md`.
 - Trust / credential / certificate / "serious dev" tone → `edx.md`, `frontend-masters.md`, `freecodecamp.md`.
+
+> Deep playbook + course-website pattern library: `./CONTENT.md`.
