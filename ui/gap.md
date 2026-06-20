@@ -9,20 +9,25 @@ Grounded from a full scan of `src/**.tsx` (2026-06-21):
 |---|---|---|---|
 | **`gap-0`** | a component's **title + its description** (one tight pair) | title ↔ desc | 61 |
 | **`gap-2`** | **coupled** — two things that read as ONE | **label ↔ input** · icon ↔ label · avatar ↔ name · chip ↔ chip in a row | 440 |
-| **`gap-3`** | **SAME function** — different components of one group | items of one kind in a list · **the gap INSIDE a card** · header ↔ meta-row | 423 |
-| **`gap-6`** | **DIFFERENT function** — two unrelated blocks | **section ↔ section · card ↔ card** · grid of cards · header ↔ body · form ↔ aside | 197 |
+| **`gap-3`** | **RELATED content** — pieces of one group | items of one kind in a list · **the gap INSIDE a card** · header ↔ meta-row · stacked content that belongs together | 423 |
+| **`gap-6`** | **two DIFFERENT content sections** | content block ↔ content block · section ↔ section · card ↔ card · grid of cards | 197 |
+| **`gap-8`** | **two DIFFERENT LAYOUT regions** | the big structural areas — e.g. **identity column ↔ content column** on profile/dashboard (the side-by-side regions) | — |
 
 `gap-4` = one roomy single group (rare — 36). Default to `0 / 2 / 3 / 6`.
 
 > **The one question that decides it:** *"Are these two the SAME function or DIFFERENT?"*
 > Same group → **`gap-3`**. Different blocks → **`gap-6`**. (`space-y-*`/`space-x-*` use the exact same scale.)
 
-## Section gap — `gap-6` vs `gap-8` (by page archetype)
-- **Default (content pages — e.g. the lesson/content reader):** section ↔ section = **`gap-6`**.
-- **Two-column "dashboard-style" pages — profile & dashboard:** the gap between the two sides / big sections is
-  **`gap-8`** (these pages breathe wider). (2026-06-21 decision.)
+## The 3 levels of difference: `3 → 6 → 8` (2026-06-21)
+The gap grows with **how different the two things are**:
+- **`gap-3`** — **related content** (pieces that belong together): stacked content in a column, the gap inside a
+  card, header↔meta. This is the reading rhythm — a content/lesson column stacks its parts with **`gap-3` (`h-3`)**.
+- **`gap-6`** — **two different content sections** (one content block vs another).
+- **`gap-8`** — **two different LAYOUT regions** (the big structural areas) — e.g. the **identity column ↔ the
+  content column** on profile/dashboard (the side-by-side regions).
 
-So `gap-8` is no longer just an "exception" — it's the **section gap on profile/dashboard**. Other pages keep `gap-6`.
+> `gap-8` is NOT a vertical content gap — vertical content uses `3` (related) or `6` (different sections).
+> `8` is reserved for **whole layout regions** (e.g. the two profile/dashboard columns).
 
 ## DO
 - title + description → `gap-0`
