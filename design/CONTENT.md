@@ -23,9 +23,11 @@ Shiki); (6) i18n every string (next-intl); (7) data via GraphQL `query-*`/`mutat
 Every content page = Breadcrumb → Header (`Heading level={3}` H3 + `body-sm muted` desc) → Content, but the
 column is built as **stacked PARTS**, and:
 - **Every part has its own `max-w` cap + `p-6` inner padding** (all parts share the same cap so they align left).
-- **Separation between parts depends on a divider:** a `border`/`Divider` between two parts → keep `p-6` (the
-  line does the separating); **no divider → `p-8`** (the extra padding makes the break instead of a line).
-- Within a part, `gap-3`. Title↔description is `gap-0`.
+- **Separation between parts:** a `border`/`Divider` between two parts → each part stays `p-6` (the line
+  separates). **No divider → use the GAP** (`gap-3` for related content, `gap-6` for two different content
+  sections — see `../ui/gap.md`), not extra padding.
+- Within a part, `gap-3`. Title↔description is `gap-0`. **`gap-8` is reserved for whole LAYOUT regions**
+  (e.g. the two profile/dashboard columns), never between vertical content parts.
 
 (Old rule was `h-3` spacers between tiers — replaced by the `p-6`/`p-8` part model above.) Personal
 home/profile + dashboard use the **2-column shell** (identity/sections left+right) with **`gap-8`** between the
