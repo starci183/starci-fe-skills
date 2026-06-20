@@ -29,14 +29,19 @@ The gap grows with **how different the two things are**:
 > `gap-8` is NOT a vertical content gap — vertical content uses `3` (related) or `6` (different sections).
 > `8` is reserved for **whole layout regions** (e.g. the two profile/dashboard columns).
 
-### Don't double the gap with padding (2026-06-21)
-When two layout regions are separated by `gap-8`, **zero the padding on the edge each region presents to the
-gap** so the gap isn't doubled by region padding:
-- the **LEFT** region drops its right padding → **`pr-0`**;
-- the **RIGHT** region drops its left padding → **`pl-0`**.
+### Region separation: divider → gap-0+p-6, no divider → space-8 (2026-06-21)
+Between two layout regions, the separation depends on whether a **divider/border** sits between them:
+- **Has a divider** (a `border` between the regions) → **gap-0** (no space), each region keeps **`p-6`**. The
+  line does the separating; adding space would violate the rule.
+- **No divider** → **space-8** between the regions, and **zero the padding on the facing edges** (the LEFT
+  region `pr-0`, the RIGHT region `pl-0`) so the 8 isn't doubled by padding.
 
-Real example (lesson reader): content column = `p-6 pr-0 pb-0`, the "On this page" rail = `p-6 pl-0`, with
-**`gap-8`** between them. So the only space between content and rail is the `gap-8` — clean, not gap + padding.
+**Apply the 8 as a MARGIN on the one region** (`lg:ml-8`), **NOT a flex `gap-8` on the whole row** — a row-wide
+`gap-8` wrongly spaces the divider boundaries too (every gap turns into 8 = violation).
+
+Real example (lesson reader, 4 columns): sidebar | content-map | content | "On this page".
+- sidebar↔content-map↔content boundaries have dividers → **gap-0** (the flex row has NO `gap-8`).
+- content↔"On this page" has no divider → content = `p-6 pr-0`, the rail = `p-6 pl-0` + `lg:ml-8` (the space-8).
 
 ## DO
 - title + description → `gap-0`
