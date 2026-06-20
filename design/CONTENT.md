@@ -19,11 +19,17 @@ rail active = `text-accent bg-accent/10`; price VND primary + USD `text-muted` s
 Shiki); (6) i18n every string (next-intl); (7) data via GraphQL `query-*`/`mutation-*` + SWR hook.
 **Don't:** hardcode hex, hand-roll button/modal/accordion, hardcode copy, px-locked layout, or forget dark.
 
-**3-tier content layout (law):** every content page = Breadcrumb → Header (`Heading level={3}` H3 +
-description `body-sm muted`, via block `PageHeader`) → Content. Same `h-3` spacer between tiers + same
-`gap-3` within a tier; all three tiers share one width cap (`max-w-3xl` for reading columns) + `mx-auto` so
-they align left. Personal home/profile pages instead use the 2-column shell (bare identity left,
-`LabeledCard` sections right) — NOT a 3-rail layout.
+**Content-column "parts" layout (law — 2026-06-21, supersedes the old `h-3`-between-tiers rule):**
+Every content page = Breadcrumb → Header (`Heading level={3}` H3 + `body-sm muted` desc) → Content, but the
+column is built as **stacked PARTS**, and:
+- **Every part has its own `max-w` cap + `p-6` inner padding** (all parts share the same cap so they align left).
+- **Separation between parts depends on a divider:** a `border`/`Divider` between two parts → keep `p-6` (the
+  line does the separating); **no divider → `p-8`** (the extra padding makes the break instead of a line).
+- Within a part, `gap-3`. Title↔description is `gap-0`.
+
+(Old rule was `h-3` spacers between tiers — replaced by the `p-6`/`p-8` part model above.) Personal
+home/profile + dashboard use the **2-column shell** (identity/sections left+right) with **`gap-8`** between the
+two sides — NOT a 3-rail layout.
 
 ## Per-page decisions
 `<page>.md` (e.g. `lesson-reader.md`, `dashboard.md`) — the archetype chosen, the section order, the flow,
