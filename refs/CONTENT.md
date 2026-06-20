@@ -10,7 +10,7 @@ faster. Same `drafts → CONTENT.md` shape as `../cannon/` and `../journal/`.
 3. **Fetch live** (WebSearch/WebFetch) the relevant platforms for what's missing — current UX detail:
    Coursera, Udemy, Duolingo, Khan Academy, Brilliant, Codecademy, edX, Skillshare, Frontend Masters, freeCodeCamp.
 4. Use it, then capture the durable takeaway into [`drafts/<topic>.md`](drafts/).
-5. `/starci-fe-update-mindset` folds `drafts/` into this file (**newest wins**) → reused, less re-fetching.
+5. At the END of the task these fold into this file (**newest wins**) automatically → reused, less re-fetching.
 
 ## Which platforms to fetch, by page type
 | Page type | Fetch |

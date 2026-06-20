@@ -4,12 +4,12 @@
         "name": "StarCi Academy",
         "url": "https://github.com/starci183"
     },
-    "description": "StarCi Academy frontend skills — UX brainstorm loop, FE code canon (audit/apply), and mindset merge.",
+    "description": "StarCi Academy frontend skills — the self-learning UX loop (brainstorm + apply→journal) and the FE code canon (audit/apply).",
     "plugins": [
         {
             "name": "starci-fe-skills",
             "source": "./",
-            "description": "All 5 StarCi FE skills: starci-fe-ux-brainstorm, starci-fe-ux-apply, starci-fe-cannon-audit, starci-fe-cannon-apply, starci-fe-update-mindset (+ shared refs/ and cannon/CONTENT.md they read)."
+            "description": "All 4 StarCi FE skills: starci-fe-ux-brainstorm, starci-fe-ux-apply, starci-fe-cannon-audit, starci-fe-cannon-apply (+ shared journal/, refs/, cannon/ they read & grow)."
         }
     ]
 }

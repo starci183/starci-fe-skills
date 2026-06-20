@@ -13,7 +13,8 @@ description: >
 
 # /starci-fe-ux-brainstorm — propose layouts from house knowledge + live web refs (Opus · MAX)
 
-Step 1 of the loop: `BRAINSTORM → (pick + feedback) → /starci-fe-ux-apply → /starci-fe-update-mindset`.
+Step 1 of the loop: `BRAINSTORM → (pick + feedback) → /starci-fe-ux-apply` — and apply updates the journal
+automatically at the end of the task (no separate merge command).
 Two repos: the **skills repo** (this — holds `cannon/`, `journal/`, `refs/`) and **`<src>` = the FE app**
 (`D:/Repositories/starci-academy`). Skill-relative paths are `../../cannon`, `../../journal`, `../../refs`.
 

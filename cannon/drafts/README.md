@@ -8,8 +8,6 @@ Each draft should carry, when known:
 - the **RULE** + a real `src/...` example + **DO/DON'T** + the **VIOLATION** an audit should flag
 - a date, so newest-wins on conflict
 
-Run **`/starci-fe-update-mindset`** to fold every draft here into `../CONTENT.md` (the right slice +
-Appendix A ledger), reconcile conflicts (newest wins), then delete the merged drafts.
-
-> Visual / UX rule drafts live in the app repo at `<app>/.claude/rules/drafts/` instead — the same
-> skill merges those into the app's `starci-*.md` rules / design docs.
+Optional mid-work scratch — at the END of the task `/starci-fe-ux-apply` folds every draft here into
+`../CONTENT.md` (the right slice + Appendix A ledger), reconciles conflicts (newest wins), and deletes the
+merged drafts. No command.

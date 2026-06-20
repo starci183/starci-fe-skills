@@ -36,5 +36,5 @@ Three layers, don't confuse them:
 ## How it grows (draft → merge)
 1. Design a block / get thầy's feedback → capture the lesson.
 2. Stage it in [`drafts/<name>.md`](drafts/), or add a dated entry straight into the right `journal-<block>.md`.
-3. `/starci-fe-update-mindset` folds `drafts/` into the matching `journal-<block>.md` (**newest wins**), deletes the draft.
+3. At the END of the task, `/starci-fe-ux-apply` folds `drafts/` into the matching `journal-<block>.md` (**newest wins**) and deletes them — automatically, no command.
 4. `/starci-fe-ux-brainstorm` + `/starci-fe-ux-apply` READ these, so each new design starts from the house's real taste — the skill gets smarter the more you use it.

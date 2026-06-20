@@ -84,10 +84,9 @@ Skills surface namespaced as `/starci-fe-skills:<skill>`:
 
 ```
 /starci-fe-ux-brainstorm   brainstorm 1–3 layouts for a page (+ widget mockups)
-/starci-fe-ux-apply        build the chosen layout on-canon + bank the learning
+/starci-fe-ux-apply        build the chosen layout on-canon + update the journal (auto, end of task)
 /starci-fe-cannon-audit    audit existing FE against the code canon
 /starci-fe-cannon-apply    write new FE code on-canon
-/starci-fe-update-mindset  merge UX experience + rule drafts into the stable canon
 ```
 
 **Author / live-edit (maintainer):** clone the repo, add the LOCAL path as a marketplace
